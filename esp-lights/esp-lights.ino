@@ -4,8 +4,12 @@
 
 const char *ssid = "ssid";
 const char *password = "password";
+const char* host = "rawgit.com";
+const char* baseUrl = "/phudekar/public-static/master/esp-lights";
 
 ESP8266WebServer server ( 80 );
+WiFiClient client;
+const int httpPort = 80;
 
 int red_pin = 12;
 int yellow_pin = 14;
@@ -16,11 +20,7 @@ int yellow_status = 0;
 int green_status = 0;
 
 void handleRoot() {
-  char temp[2500];
-
-  snprintf ( temp, 2500,);
-  server.send ( 200, "text/html", temp );
-  digitalWrite ( led, 0 );
+  server.send ( 200, "text/html", getDataFromHost("/index.html"));
 }
 
 void handleNotFound() {
@@ -31,6 +31,25 @@ int parseState(String state) {
   if (state == "ON")
     return 1;
   return 0;
+}
+
+String getDataFromHost(String url){
+  String response = "";
+  if (!client.connect(host, httpPort)) {
+    Serial.println("connection failed");
+    return response;
+  }
+  
+  client.print(String("GET ") + baseUrl + url + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" + 
+               "Connection: close\r\n\r\n");
+  delay(10);
+  
+  while(client.available()){
+    String line = client.readStringUntil('\r');
+    response += line;
+  }
+  return response;
 }
 
 void handleLight() {
