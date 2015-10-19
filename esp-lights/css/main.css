@@ -1,0 +1,15 @@
+.body {font-family: 'sans-serif' }
+#red.active { background: red; }
+#yellow.active {background: yellow;}
+#green.active { background: green; }
+.light {
+	background: gray;
+ 	width: 40px;
+	height: 40px;
+	border-radius: 22px;
+	border: solid 2px black;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 10px;
+}
