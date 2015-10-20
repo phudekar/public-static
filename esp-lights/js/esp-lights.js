@@ -35,13 +35,13 @@ var getStatus = function () {
 };
 
 var turnLightOn = function (lightId) {
-	$(light).addClass('active');
+	$(lightId).addClass('active');
 	var lightName = getLightName(lightId);
-	changeState(light, 'ON');
+	changeState(lightName, 'ON');
 };
 
 var turnLightOff = function (lightId) {
-	$(light).removeClass('active');
+	$(lightId).removeClass('active');
 	var lightName = getLightName(lightId);
 	changeState(lightName, 'OFF');
 };
