@@ -57,7 +57,7 @@ var toggle = function (lightId) {
 };
 
 var getLightName = function (lightId) {
-	return lightId.substring(1, a.length)
+	return lightId.substring(1, lightId.length);
 }
 
 $('#red').on('mouseup', function (ev) { toggle('#red') });
