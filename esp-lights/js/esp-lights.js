@@ -14,7 +14,7 @@ var updateStatusForLight = function (light, status) {
 var changeState = function (light, state) {
 	$.ajax({
 		method: 'POST',
-		url: '/light?light=light&state=' + state,
+		url: '/light?light=' + light + '&state=' + state,
 		data: ''
 	}).done(function (data) {
 		console.log(data);
