@@ -47,9 +47,9 @@ var turnLightOff = function (light) {
 var toggle = function (light) {
 	var lightElement = $(light);
 	if (lightElement.hasClass('active'))
-		lightElement.removeClass('active');
+		turnLightOff(light);
 	else
-		lightElement.addClass('active');
+		turnLightOn(light);
 	getStatus();
 };
 
