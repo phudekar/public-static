@@ -34,24 +34,31 @@ var getStatus = function () {
 	});
 };
 
-var turnLightOn = function (light) {
+var turnLightOn = function (lightId) {
 	$(light).addClass('active');
+	var lightName = getLightName(lightId);
 	changeState(light, 'ON');
 };
 
-var turnLightOff = function (light) {
+var turnLightOff = function (lightId) {
 	$(light).removeClass('active');
-	changeState(light, 'OFF');
+	var lightName = getLightName(lightId);
+	changeState(lightName, 'OFF');
 };
 
-var toggle = function (light) {
-	var lightElement = $(light);
+var toggle = function (lightId) {
+	var lightElement = $(lightId);
+
 	if (lightElement.hasClass('active'))
-		turnLightOff(light);
+		turnLightOff(lightId);
 	else
-		turnLightOn(light);
+		turnLightOn(lightId);
 	getStatus();
 };
+
+var getLightName = function (lightId) {
+	return lightId.substring(1, a.length)
+}
 
 $('#red').on('mouseup', function (ev) { toggle('#red') });
 $('#yellow').on('mouseup', function (ev) { toggle('#yellow') });
